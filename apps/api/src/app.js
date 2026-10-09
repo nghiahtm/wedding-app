@@ -1,6 +1,11 @@
 import cors from 'cors';
 import express from 'express';
+import { isDatabaseReady } from './db.js';
+import musicRoutes from './routes/music.js';
+import photoRoutes from './routes/photos.js';
 import rsvpRoutes from './routes/rsvps.js';
+import visitRoutes from './routes/visits.js';
+import weddingRoutes from './routes/wedding.js';
 import { errorResponse, successResponse } from './utils/dataResponse.js';
 
 const app = express();
@@ -12,10 +17,29 @@ app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: '20kb' }));
 
 app.get('/api/health', (_request, response) => {
-  response.json(successResponse({ status: 'ok' }, 'API đang hoạt động.'));
+  if (!isDatabaseReady()) {
+    return response.status(503).json(errorResponse(
+      [{ field: 'database', message: 'Chưa kết nối được MongoDB.' }],
+      'API đang chạy nhưng chưa kết nối cơ sở dữ liệu.'
+    ));
+  }
+  response.json(successResponse({ status: 'ok', database: 'connected' }, 'API đang hoạt động.'));
 });
 
-app.use('/api/rsvps', rsvpRoutes);
+// Trả lỗi rõ ràng ngay thay vì để request treo chờ MongoDB.
+function requireDatabase(_request, response, next) {
+  if (isDatabaseReady()) return next();
+  response.status(503).json(errorResponse(
+    [{ field: 'database', message: 'Chưa kết nối được MongoDB.' }],
+    'Máy chủ chưa kết nối cơ sở dữ liệu. Vui lòng thử lại sau.'
+  ));
+}
+
+app.use('/api/rsvps', requireDatabase, rsvpRoutes);
+app.use('/api/photos', requireDatabase, photoRoutes);
+app.use('/api/music', requireDatabase, musicRoutes);
+app.use('/api/visits', requireDatabase, visitRoutes);
+app.use('/api/wedding', requireDatabase, weddingRoutes);
 
 app.use((_request, response) => {
   response.status(404).json(errorResponse(
@@ -30,6 +54,12 @@ app.use((error, _request, response, _next) => {
     return response.status(400).json(errorResponse(
       [{ field: 'body', message: 'Nội dung JSON không hợp lệ.' }],
       'Không thể đọc dữ liệu yêu cầu.'
+    ));
+  }
+  if (error.type === 'entity.too.large') {
+    return response.status(413).json(errorResponse(
+      [{ field: 'file', message: 'File quá lớn (ảnh tối đa 6MB, nhạc tối đa 15MB).' }],
+      'Dữ liệu gửi lên quá lớn.'
     ));
   }
   response.status(500).json(errorResponse(

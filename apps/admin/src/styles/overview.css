@@ -1,0 +1,37 @@
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stat{position:relative;min-height:132px;padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
+.stat:hover{transform:translateY(-2px);box-shadow:0 12px 28px #1f2a2414}
+.stat-icon{position:absolute;top:16px;right:16px;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;box-shadow:inset 0 0 0 1px #ffffff99}
+.stat-icon.sage{background:linear-gradient(135deg,#e6f0e8 0%,#d3e4d8 100%);color:#3e6656}
+.stat-icon.coral{background:linear-gradient(135deg,#fbefe9 0%,#f4d9cd 100%);color:#a4563f}
+.stat-icon.gold{background:linear-gradient(135deg,#f8f2e2 0%,#efe2bf 100%);color:#94782f}
+.stat-icon.sky{background:linear-gradient(135deg,#ebf1f8 0%,#d6e2f0 100%);color:#45678f}
+.stat-label{display:block;max-width:calc(100% - 48px);color:#68736a;font-size:12px;line-height:1.4}
+.stat-value{display:flex;align-items:baseline;gap:7px;margin:16px 0 0}
+.stat-value strong{font-family:'Manrope',sans-serif;font-size:30px;font-weight:700;line-height:1}
+.stat-value small{color:var(--muted);font-size:12px}
+.stat-note{display:block;margin-top:8px;color:var(--muted);font-size:11px}
+.recent-list{margin:0;padding:6px 0;list-style:none}
+.recent-item{display:flex;align-items:center;gap:12px;padding:12px 20px}
+.recent-item+.recent-item{border-top:1px solid #f0f2ee}
+.recent-item .guest-avatar{width:36px;height:36px;font-size:13px}
+.recent-main{flex:1;min-width:0}
+.recent-main p{margin:0}
+.recent-main p:first-child{display:flex;align-items:baseline;gap:10px;font-size:13px}
+.recent-main time{color:var(--muted);font-size:11px}
+.recent-note{margin-top:3px!important;overflow:hidden;color:#647067;font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:1100px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .stats{gap:10px}
+  .stat{min-height:auto;padding:14px}
+  .stat-icon{top:12px;right:12px;width:32px;height:32px;border-radius:10px}
+  .stat-value strong{font-size:24px}
+  .recent-item{flex-wrap:wrap;padding:12px 16px}
+  .recent-item .status{margin-left:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  .stat{transition:none}
+  .stat:hover{transform:none}
+}

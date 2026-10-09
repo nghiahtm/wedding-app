@@ -1,18 +1,33 @@
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'node:url';
-import mongoose from 'mongoose';
 
 dotenv.config({ path: fileURLToPath(new URL('../../../.env', import.meta.url)) });
 const { default: app } = await import('./app.js');
+const { connectDatabase, getMongoUri } = await import('./db.js');
 
 const port = process.env.PORT ?? 4000;
-const mongoUri = process.env.MONGODB_URI ?? 'mongodb://127.0.0.1:27017/wedding_invitation';
 
+let mongoUri;
 try {
-  await mongoose.connect(mongoUri);
-  console.log('Connected to MongoDB');
-  app.listen(port, () => console.log(`API listening on http://localhost:${port}`));
+  mongoUri = getMongoUri();
 } catch (error) {
-  console.error('Could not connect to MongoDB:', error.message);
+  console.error(error.message);
   process.exit(1);
 }
+
+if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_API_KEY) {
+  console.warn('Chưa đặt ADMIN_API_KEY: trang admin sẽ không tải/xóa được ảnh.');
+}
+
+const disconnectDatabase = connectDatabase(mongoUri);
+const server = app.listen(port, () => console.log(`API listening on http://localhost:${port}`));
+
+async function shutdown(signal) {
+  console.log(`Nhận ${signal}, đang dừng API...`);
+  server.close();
+  await disconnectDatabase();
+  process.exit(0);
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

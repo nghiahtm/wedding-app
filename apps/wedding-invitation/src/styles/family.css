@@ -1,0 +1,26 @@
+.family{background:var(--blush-1)}
+.family-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(16px,3vw,36px);max-width:980px;margin:44px auto 0}
+.family-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;height:100%;padding:38px 28px 32px;border-radius:24px;background:#fff;box-shadow:0 18px 44px #98434f14;text-align:center}
+.family-card-border{position:absolute;inset:10px;border:1px solid #c9a08f8c;border-radius:16px;pointer-events:none}
+.family-card-border:before{content:'';position:absolute;inset:4px;border:1px solid #c9a08f40;border-radius:12px}
+.family-label{display:flex;align-items:center;gap:12px;margin:0;color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase}
+.family-label:before,.family-label:after{content:'';width:28px;height:1px;background:var(--rose-gold)}
+.family-parents{display:grid;gap:8px;margin:4px 0 0}
+.family-parents div{display:flex;align-items:baseline;justify-content:center;gap:8px}
+.family-parents dt{color:var(--muted);font-size:12px;letter-spacing:.06em}
+.family-parents dd{margin:0;color:var(--ink);font-family:'Playfair Display',Georgia,serif;font-size:19px}
+.family-pending{margin:4px 0 0;color:var(--muted);font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:15px}
+.family-child{display:grid;gap:2px;margin:8px 0 0;padding-top:16px;border-top:1px solid var(--line);width:min(100%,260px)}
+.family-child small{color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.family-child strong{color:var(--accent-deep);font-family:var(--font-heading);font-size:40px;font-weight:400;line-height:1.2}
+.family-address{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:4px 6px;max-width:300px;margin:0;color:var(--muted);font-size:12.5px;line-height:1.6;text-decoration:none;transition:color .2s ease}
+.family-address small{flex-basis:100%;color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px}
+.family-address:hover,.family-address:focus-visible{color:var(--ink)}
+.family-address:focus-visible{outline:2px solid var(--rose-gold);outline-offset:4px;border-radius:6px}
+.family-address svg{flex:none;margin-top:3px;color:var(--accent)}
+.family-heart{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--blush-0);box-shadow:0 0 0 1px var(--rose-gold),0 6px 16px #98434f1f;color:var(--accent)}
+@media(max-width:760px){
+  .family-grid{grid-template-columns:1fr;justify-items:center;gap:18px;margin-top:34px}
+  .family-card{width:100%;padding:32px 20px 26px}
+  .family-child strong{font-size:36px}
+}

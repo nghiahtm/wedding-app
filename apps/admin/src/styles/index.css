@@ -1,0 +1,10 @@
+/* Thứ tự import quyết định cascade: không đổi tùy tiện. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import './base.css';
+@import './layout.css';
+@import './page.css';
+@import './overview.css';
+@import './guests.css';
+@import './info.css';
+@import './photos.css';
+@import './music.css';

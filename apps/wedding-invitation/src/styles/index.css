@@ -1,0 +1,22 @@
+/* Thứ tự import quyết định cascade: không đổi tùy tiện. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&family=Great+Vibes&display=swap');
+@import './base.css';
+@import './typography.css';
+@import './rsvp.css';
+@import './letter-flight.css';
+@import './masthead.css';
+@import './hero.css';
+@import './story.css';
+@import './family.css';
+@import './details.css';
+@import './footer.css';
+@import './calendar.css';
+@import './album.css';
+@import './cards.css';
+@import './gift.css';
+@import './bottom-sheet.css';
+@import './wishes.css';
+@import './cover.css';
+@import './invitation-card.css';
+@import './curtain-window.css';
+@import './music.css';

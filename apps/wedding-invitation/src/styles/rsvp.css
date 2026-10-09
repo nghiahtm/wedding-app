@@ -1,0 +1,42 @@
+.rsvp{display:flex;flex-direction:column;align-items:center;background:var(--blush-1)}
+.rsvp-heading{max-width:560px;text-align:center}
+.rsvp-heading>p{margin:18px auto 0;color:var(--muted);font-size:14px;line-height:1.8}
+.rsvp-card{width:min(100%,620px);margin-top:36px;padding:32px;border:1px solid var(--line);border-radius:26px;background:#fff;box-shadow:0 22px 54px #a45f6714}
+.rsvp form{display:grid;gap:18px}
+.rsvp label{display:grid;gap:8px;color:var(--ink);font-size:12px;font-weight:500}
+.rsvp input,.rsvp select,.rsvp textarea{width:100%;min-height:46px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;outline:none;background:var(--blush-0);color:var(--ink);font-size:14px;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.rsvp input:focus,.rsvp select:focus,.rsvp textarea:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px #ba868c26}
+.rsvp textarea{min-height:110px;resize:vertical}
+.rsvp [aria-invalid="true"]{border-color:#cc5463;box-shadow:0 0 0 3px #c7828a1f}
+.optional{color:var(--muted);font-weight:400}
+.field-error{color:#bc4351;font-size:12px;line-height:1.4}
+.form-message{margin:0;color:var(--accent-deep);font-size:13px;line-height:1.6;text-align:center}
+.rsvp button:disabled{opacity:.6;cursor:wait}
+.rsvp button span{color:#f0c7cc}
+.button-icon{display:inline-flex;transition:transform .25s ease}
+.rsvp button:hover:not(:disabled) .button-icon{transform:translate(3px,-3px) rotate(-8deg)}
+.rsvp button:focus-visible .button-icon{transform:translate(3px,-3px) rotate(-8deg)}
+  .button-icon{transition:none}
+.rsvp button{position:relative;overflow:hidden;isolation:isolate;gap:14px;padding:16px 30px;border-radius:999px;background:linear-gradient(120deg,#e2949d 0%,#c76571 45%,#b53140 100%);background-size:160% 100%;background-position:0% 50%;color:#feeff1;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 20px #b5314040,inset 0 1px 0 #fcc5cc66;transition:background-position .45s ease,transform .25s ease,box-shadow .25s ease}
+.rsvp button:after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(105deg,transparent 30%,#ffffff55 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease}
+.rsvp button:hover:not(:disabled){background-position:100% 50%;transform:translateY(-2px);box-shadow:0 12px 26px #b5314059,inset 0 1px 0 #fcc5cc66}
+.rsvp button:focus-visible{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 12px 26px #b5314059,inset 0 1px 0 #fcc5cc66}
+.rsvp button:hover:not(:disabled):after{transform:translateX(120%)}
+.rsvp button:focus-visible:after{transform:translateX(120%)}
+.rsvp button:focus-visible{outline:2px solid #caa190;outline-offset:3px}
+.rsvp button:active:not(:disabled){transform:translateY(0);box-shadow:0 5px 12px #b531404d}
+.rsvp button span{color:#fcc5cc}
+  .rsvp button{transition:none}
+  .rsvp button:after{transition:none}
+  .rsvp button:hover:not(:disabled){transform:none}
+  .rsvp button:focus-visible{transform:none}
+.note-count{justify-self:end;margin-top:-2px;color:var(--muted);font-size:10px}
+.note-count.is-full{color:var(--accent);font-weight:600}
+.rsvp button{justify-self:center;display:flex;align-items:center;background:linear-gradient(120deg,#eea1aa 0%,#cc6a76 45%,#a34754 100%);background-size:160% 100%;color:#fff8f9}
+.rsvp button:disabled{opacity:.6;cursor:wait}
+@media(max-width:760px){
+  .rsvp-card{margin-top:28px;padding:22px 18px;border-radius:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rsvp input,.rsvp select,.rsvp textarea{transition:none}
+}

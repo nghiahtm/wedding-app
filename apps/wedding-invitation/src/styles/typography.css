@@ -1,0 +1,17 @@
+/* Kiểu chữ tiêu đề dùng chung cho toàn thiệp: mọi h1–h6 và chữ thư pháp đều dùng --font-heading.
+   Font Tempting đặt tại public/fonts/ (Tempting.woff2 hoặc Tempting.ttf). Chưa có file, hoặc font
+   thiếu ký tự tiếng Việt, thì trình duyệt dùng Great Vibes. */
+@font-face{font-family:'Tempting';src:url('/fonts/Tempting.woff2') format('woff2'),url('/fonts/Tempting.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+:root{--font-heading:'Tempting','Great Vibes','Playfair Display',cursive}
+h1,h2,h3,h4,h5,h6{margin:0;font-family:var(--font-heading);font-weight:400;font-style:normal;letter-spacing:0;line-height:1.1}
+h1{font-size:clamp(70px,8.6vw,124px);line-height:1.02}
+h2{font-size:clamp(52px,6vw,80px);line-height:1.12}
+h3{font-size:clamp(34px,4vw,44px)}
+h4{font-size:clamp(28px,3vw,34px)}
+h5{font-size:26px}
+h6{font-size:22px}
+h1 span,h2 span{font-style:normal;color:var(--accent);font-size:.7em}
+@media(max-width:760px){
+  h2{font-size:58px}
+  h3{font-size:34px}
+}
