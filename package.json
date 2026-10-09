@@ -1,0 +1,14 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["apps/api", "apps/wedding-invitation", "apps/admin"],
+  "scripts": {
+    "dev": "concurrently -k -n API,INVITATION,ADMIN -c green,magenta,blue \"npm run dev --prefix apps/api\" \"npm run dev --prefix apps/wedding-invitation\" \"npm run dev --prefix apps/admin\"",
+    "dev:api": "npm run dev --prefix apps/api",
+    "dev:invitation": "npm run dev --prefix apps/wedding-invitation",
+    "dev:admin": "npm run dev --prefix apps/admin",
+    "build": "npm run build --workspace apps/wedding-invitation && npm run build --workspace apps/admin"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}
