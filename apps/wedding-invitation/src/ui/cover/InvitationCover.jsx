@@ -7,8 +7,6 @@ function InvitationCover({
   stage,
   onEnter,
   hasMusic,
-  isCurtainOpen,
-  onOpenCurtain,
 }) {
   const isLeaving = stage === "leaving";
 
@@ -22,8 +20,6 @@ function InvitationCover({
         isBusy={stage !== "card"}
         onEnter={onEnter}
         hasMusic={hasMusic}
-        isCurtainOpen={isCurtainOpen}
-        onOpenCurtain={onOpenCurtain}
       />
     </main>
   );

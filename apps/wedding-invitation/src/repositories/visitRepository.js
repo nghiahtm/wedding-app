@@ -32,8 +32,9 @@ function getVisitorId() {
 // Mỗi phiên trình duyệt chỉ gửi một lần; API tự bỏ qua lượt lặp trong 30 phút.
 export async function recordVisit() {
   if (readStorage(sessionStorage, SESSION_KEY)) return;
-  writeStorage(sessionStorage, SESSION_KEY, "1");
   await postVisit(getVisitorId());
+  // Chỉ đánh dấu khi đã gửi thành công, để lần tải lại sau còn thử lại nếu API/MongoDB đang lỗi.
+  writeStorage(sessionStorage, SESSION_KEY, "1");
 }
 
 export async function getVisitSummary() {

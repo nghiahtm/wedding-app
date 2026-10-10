@@ -1,0 +1,22 @@
+.envelope-card{width:100%;margin:2px auto 26px;animation:envelope-in .9s .25s cubic-bezier(.2,.8,.25,1) both}
+.envelope{position:relative;width:min(100%,290px);aspect-ratio:1.6;margin:120px auto 0}
+.envelope:before{content:'';position:absolute;inset:0;border-radius:2px;background:#6b1c28;box-shadow:0 18px 30px #64293040}
+.envelope-flap{position:absolute;left:0;right:0;bottom:100%;height:46%;background:linear-gradient(180deg,#8a2a36,#5c1621);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.envelope-photo{position:absolute;z-index:1;right:5%;bottom:24%;width:66%;aspect-ratio:4/5;margin:0;padding:6px;background:#fffdfb;box-shadow:0 8px 18px #2c212338;transform:rotate(8deg);transform-origin:50% 100%}
+.envelope-photo img,.envelope-monogram{display:block;width:100%;height:100%;object-fit:cover}
+.envelope-monogram{display:grid;place-content:center;background:radial-gradient(circle at 50% 35%,#ac414e 0%,#942e3a 55%,#7a222c 100%);color:#f6c8cd;font-family:var(--font-heading);font-size:48px;line-height:1}
+.envelope-monogram em{display:block;color:#d0afa2;font-style:normal;font-size:.5em}
+.envelope-front{position:absolute;z-index:2;inset:0;background:linear-gradient(180deg,#9a3140 0%,#84283a 100%);clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%)}
+.envelope-pocket{position:absolute;z-index:3;inset:0;background:linear-gradient(180deg,#a73b4a 0%,#8a2a36 100%);clip-path:polygon(0 100%,50% 52%,100% 100%)}
+.envelope-seal{position:absolute;z-index:4;left:50%;top:52%;display:grid;place-items:center;width:15%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f3d9b8 0%,#d3a276 55%,#a8764f 100%);box-shadow:0 3px 7px #2c212355,inset 0 0 0 2px #ffffff40;transform:translate(-50%,-50%)}
+.envelope-seal svg{width:56%;fill:none;stroke:#7a4a2c;stroke-width:1.6;stroke-linejoin:round}
+.envelope-bouquet{position:absolute;z-index:3;left:-21%;bottom:4%;width:64%;height:auto;filter:drop-shadow(0 6px 8px #2c212340);pointer-events:none}
+.is-leaving .envelope-card{animation:envelope-pull 1s .55s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes envelope-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes envelope-pull{to{opacity:0;transform:translateY(40px) scale(1.4)}}
+@media(max-width:600px){
+  .envelope{width:min(100%,250px);margin-top:104px}
+}
+@media(prefers-reduced-motion:reduce){
+  .envelope-card,.is-leaving .envelope-card{animation:none}
+}

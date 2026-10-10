@@ -28,7 +28,7 @@ Monorepo npm workspaces: `apps/api` (Express + MongoDB), `apps/wedding-invitatio
 app/
   useInvitation.js        chỉ ghép các hook con, trả { isOpen, cover, content }
   useInvitationData.js    tải ảnh, nhạc, ghi lượt xem
-  useCover.js             state riêng của trang đầu: rèm cửa sổ ảnh, card → revealing → leaving → open
+  useCover.js             state riêng của trang đầu: card → leaving → open
   useActiveSection.js     mục đang xem để header tô sáng
   scrollToSection.js      cuộn tới mục, tự chỉnh nếu trang bị đẩy lệch
   useScrollReveal.js, useRsvpForm.js + rsvpValidation.js, useGift.js, useBackgroundMusic.js
@@ -40,7 +40,7 @@ repositories/
   photoRepository.js, musicRepository.js, rsvpRepository.js, visitRepository.js, wishRepository.js
   familyRepository.js     tên bố mẹ (API /api/wedding, nhập ở admin) + tên cô dâu chú rể, địa chỉ nhà
 ui/
-  cover/                  InvitationCover, InvitationCard, CurtainWindow (khung ảnh có rèm), FloralSprig
+  cover/                  InvitationCover, InvitationCard, EnvelopeCard (phong bì rượu vang, ảnh album đầu tiên nghiêng nhô ra, hoa, dấu sáp)
   layout/                 Masthead (header điều hướng), Footer, MusicToggle
   sections/               mỗi mục một file: Hero, Story(+WeddingCalendar), Family, Album, Details,
                           InvitationCards, Rsvp(+LetterFlight), Gift(+GiftSheet, QrCodeList)
@@ -49,7 +49,7 @@ ui/
   InvitationContent.jsx   xếp header + các mục theo thứ tự
 styles/
   index.css               import theo thứ tự cascade
-  base.css, typography.css (font + h1–h6), cover.css, invitation-card.css, curtain-window.css, masthead.css, hero.css, story.css, calendar.css, album.css,
+  base.css, typography.css (font + h1–h6), cover.css, invitation-card.css, envelope-card.css, masthead.css, hero.css, story.css, calendar.css, album.css,
   details.css, cards.css, rsvp.css, letter-flight.css, gift.css, bottom-sheet.css, wishes.css,
   music.css, footer.css
 ```

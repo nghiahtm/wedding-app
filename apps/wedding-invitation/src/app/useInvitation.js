@@ -42,8 +42,6 @@ export function useInvitation() {
       coverPhoto: photos.couple[0],
       stage: cover.stage,
       onEnter: cover.enterInvitation,
-      isCurtainOpen: cover.isCurtainOpen,
-      onOpenCurtain: cover.openCurtain,
       hasMusic: backgroundMusic.hasMusic,
     },
     content: {

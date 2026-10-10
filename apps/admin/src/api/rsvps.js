@@ -3,7 +3,8 @@ const apiUrl = import.meta.env.VITE_API_URL ?? '';
 async function readResponse(response) {
   const result = await response.json().catch(() => null);
   if (!response.ok) {
-    const error = new Error(result?.message ?? 'Không thể kết nối API. Vui lòng thử lại sau.');
+    // Không có JSON nghĩa là proxy không tới được API (API hoặc MongoDB chưa chạy).
+    const error = new Error(result?.message ?? 'Không kết nối được API. Hãy kiểm tra API (cổng 4000) và MongoDB đã chạy chưa, rồi thử lại.');
     error.errors = result?.errors ?? [];
     throw error;
   }

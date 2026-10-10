@@ -1,5 +1,6 @@
 import { ArrowRight, Music } from "lucide-react";
-import CurtainWindow from "./CurtainWindow.jsx";
+import EnvelopeCard from "./EnvelopeCard.jsx";
+import FloralSprig from "../shared/FloralSprig.jsx";
 
 // Tấm thiệp mời ở trang đầu: lời mời, họ tên cô dâu chú rể, ngày cưới
 // và nút để vào đọc thông tin chi tiết.
@@ -10,8 +11,6 @@ function InvitationCard({
   isBusy,
   onEnter,
   hasMusic,
-  isCurtainOpen,
-  onOpenCurtain,
 }) {
   const { groomFullName, brideFullName, dateLong, invitation, initials } =
     weddingDetails;
@@ -22,12 +21,13 @@ function InvitationCard({
       aria-labelledby="invitation-card-title"
     >
       <span className="invitation-card-border" aria-hidden="true" />
-      <CurtainWindow
+      <FloralSprig className="card-corner-flowers card-corner-left" />
+      <FloralSprig className="card-corner-flowers card-corner-right" />
+      <p className="invitation-card-save">Save the date</p>
+      <EnvelopeCard
         photo={coverPhoto}
         alt={`Ảnh cưới của ${groomFullName} và ${brideFullName}`}
         initials={initials}
-        isOpen={isCurtainOpen}
-        onOpen={onOpenCurtain}
       />
       <p className="invitation-card-eyebrow">{invitation.eyebrow}</p>
       <p className="invitation-card-intro">{invitation.intro}</p>
