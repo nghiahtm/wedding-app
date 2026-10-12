@@ -1,26 +1,15 @@
 import RevealSection from "../shared/RevealSection.jsx";
-import SectionTitle from "../shared/SectionTitle.jsx";
-import WeddingCalendar from "./WeddingCalendar.jsx";
+import AlbumSection from "./AlbumSection.jsx";
+import EventInfo from "./EventInfo.jsx";
+import WeddingInfo from "./WeddingInfo.jsx";
 
-// Lời ngỏ: máy tính chia 2 cột (lời ngỏ | lịch), điện thoại xếp dọc.
-function StorySection({ weddingDetails, revealed }) {
-  const { groomName, brideName, dateLong, date } = weddingDetails;
-
+// Thông tin: tấm giấy "Thông tin lễ cưới" (bố mẹ hai bên), album ảnh, rồi tấm giấy "Thông tin tiệc cưới" (ngày giờ, lịch, xác nhận).
+function StorySection({ weddingDetails, families, couplePhotos, revealed, onNavigate }) {
   return (
     <RevealSection id="story" className="story" from="left" revealed={revealed}>
-      <div className="story-copy-block">
-        <SectionTitle eyebrow="Thân gửi gia đình và bạn bè" align="start">
-          Chúng mình sắp
-          <br />
-          về chung một nhà.
-        </SectionTitle>
-        <p className="story-copy">
-          Sau những ngày tháng cùng nhau đi qua, {groomName} và {brideName} mong
-          được sẻ chia khoảnh khắc đáng nhớ này với những người thương yêu nhất.
-        </p>
-        <span className="story-date">{dateLong}</span>
-      </div>
-      <WeddingCalendar {...date} />
+      <WeddingInfo families={families} weddingDetails={weddingDetails} />
+      <AlbumSection couplePhotos={couplePhotos} revealed={revealed} />
+      <EventInfo weddingDetails={weddingDetails} onNavigate={onNavigate} />
     </RevealSection>
   );
 }

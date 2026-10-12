@@ -3,7 +3,7 @@
 function SectionTitle({ eyebrow, children, align = "center" }) {
   return (
     <header className={`section-title is-${align}`}>
-      <p className="eyebrow">{eyebrow}</p>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h2>{children}</h2>
       <svg className="title-ornament" viewBox="0 0 120 14" aria-hidden="true">
         <path d="M2 7h44M74 7h44" />

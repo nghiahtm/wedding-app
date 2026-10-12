@@ -1,26 +1,12 @@
+import PetalFall from "../shared/PetalFall.jsx";
 import InvitationCard from "./InvitationCard.jsx";
 
-// Trang đầu: tấm thiệp mời trên nền giấy ngà; bấm nút để vào nội dung.
-function InvitationCover({
-  weddingDetails,
-  coverPhoto,
-  stage,
-  onEnter,
-  hasMusic,
-}) {
-  const isLeaving = stage === "leaving";
-
+// Trang đầu: tấm thiệp mời trên nền xanh nhạt; bấm "Mở thiệp" để thiệp bay lên rồi vào nội dung.
+function InvitationCover({ weddingDetails, onEnter, isLeaving, hasMusic }) {
   return (
     <main className={`invitation-cover${isLeaving ? " is-leaving" : ""}`}>
-      <span className="cover-frame" aria-hidden="true" />
-      <InvitationCard
-        weddingDetails={weddingDetails}
-        coverPhoto={coverPhoto}
-        isLeaving={isLeaving}
-        isBusy={stage !== "card"}
-        onEnter={onEnter}
-        hasMusic={hasMusic}
-      />
+      <PetalFall />
+      <InvitationCard weddingDetails={weddingDetails} onEnter={onEnter} hasMusic={hasMusic} />
     </main>
   );
 }

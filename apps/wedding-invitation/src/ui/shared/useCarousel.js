@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // Carousel cuộn ngang bằng scroll-snap (hành vi thuần giao diện):
 // theo dõi ảnh đang ở giữa, chuyển ảnh, tự chạy và dừng khi khách tương tác.
-export function useCarousel(trackRef, count, autoplayMs = 4000) {
+export function useCarousel(trackRef, count, autoplayMs = 3000) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const resumeTimerRef = useRef(null);
@@ -18,6 +18,14 @@ export function useCarousel(trackRef, count, autoplayMs = 4000) {
     },
     [trackRef, count],
   );
+
+  // Máy tính: mở lên ở ảnh thứ hai để thấy sẵn 3 ảnh (trái, giữa, phải). Điện thoại chỉ hiện 1 ảnh nên bắt đầu từ ảnh đầu.
+  useEffect(() => {
+    const track = trackRef.current;
+    const slide = track?.children[1];
+    if (!slide || count < 3 || !window.matchMedia("(min-width: 761px)").matches) return;
+    track.scrollTo({ left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2, behavior: "instant" });
+  }, [trackRef, count]);
 
   // Ảnh nào gần tâm khung nhất là ảnh đang xem.
   useEffect(() => {

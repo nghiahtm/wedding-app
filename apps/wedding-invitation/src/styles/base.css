@@ -1,4 +1,6 @@
-:root{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--blush-1);font-synthesis:none;text-rendering:optimizeLegibility;font-weight:400;--ink:#3f282d;--muted:#887176;--line:#eed7da;--accent:#b95e69;--accent-deep:#98434f;--rose-gold:#c9a08f;--blush-0:#fffafb;--blush-1:#fcf1f2;--blush-2:#f8e4e7;--blush-3:#f2d7da}
+:root{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--blush-1);font-synthesis:none;text-rendering:optimizeLegibility;font-weight:400;--ink:#2f3a28;--muted:#6f7a63;--line:#cdd9bd;--accent:#7d9868;--accent-deep:#6b7b4f;--rose-gold:#a7bd8f;--blush-0:#fbfdf8;--blush-1:#f3f6ee;--blush-2:#e9efe1;--blush-3:#dbe6cf}
+/* Độ rộng chung của các khối nội dung (thẻ thông tin, bản đồ, form hồi đáp): theo cỡ tên cô dâu chú rể ở đầu thiệp. */
+:root{--content-w:calc(clamp(44px,5.2vw,68px) * 10.6)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;min-width:320px}
@@ -17,13 +19,15 @@ textarea{font:inherit}
   .has-scroll-reveal .scroll-reveal:not(.is-visible){opacity:1;transform:none;transition:none}
 }
 .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:10px;color:var(--accent);font-weight:600;margin:0 0 23px}
-.section{padding:115px max(8vw,32px)}
+.section{padding:58px max(8vw,32px)}
 @media (min-width:761px) and (max-width:1024px){
   .section{padding-left:7vw;padding-right:7vw}
 }
 @media(max-width:760px){
-  .section{padding:82px 9vw}
+  .section{padding:41px 9vw}
+  .section-title h2{font-size:clamp(36px,11.5vw,50px)}
 }
+.rsvp-heading>p,.gift-copy,footer p,.venue-address{text-wrap:balance}
 .invitation-content{animation:invitation-arrive .65s ease both}
 @keyframes invitation-arrive{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){

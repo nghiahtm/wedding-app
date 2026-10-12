@@ -1,4 +1,5 @@
 import { Save } from 'lucide-react';
+import GiftInfoForm from './GiftInfoForm.jsx';
 
 const SIDES = [
   { side: 'groom', title: 'Nhà trai', childLabel: 'Chú rể', nameKey: 'groomName' },
@@ -14,8 +15,8 @@ function ParentField({ label, value, placeholder, maxLength, onChange }) {
   );
 }
 
-// Tab Thông tin: nhập tên bố mẹ của chú rể và cô dâu, hiển thị ở mục "Gia đình hai bên" trên thiệp.
-function InfoTab({ familyForm, wedding }) {
+// Tab Thông tin: tên bố mẹ hai bên (mục "Thông tin lễ cưới" trên thiệp) và tài khoản mừng cưới (dưới mã QR).
+function InfoTab({ familyForm, giftForm, wedding }) {
   const { form, loading, saving, isDirty, message, maxLength, updateField, handleSubmit } = familyForm;
 
   return (
@@ -45,6 +46,7 @@ function InfoTab({ familyForm, wedding }) {
           </button>
         </div>
       </form>
+      <GiftInfoForm giftForm={giftForm} />
     </div>
   );
 }

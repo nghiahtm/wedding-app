@@ -10,7 +10,7 @@ import OverviewTab from './overview/OverviewTab.jsx';
 import PhotoManager from './PhotoManager.jsx';
 
 // Khung trang quản trị: thanh bên (máy tính) / thanh tab đáy (điện thoại) và nội dung theo tab.
-function AdminDashboard({ dashboard, navigation, photoManager, musicManager, familyForm }) {
+function AdminDashboard({ dashboard, navigation, photoManager, musicManager, familyForm, giftForm }) {
   const { wedding } = dashboard;
   const { tabs, activeTab, currentTab, selectTab } = navigation;
   const isOverview = activeTab === 'overview';
@@ -34,7 +34,7 @@ function AdminDashboard({ dashboard, navigation, photoManager, musicManager, fam
         {activeTab === 'overview' && (
           <OverviewTab {...dashboard} onViewAllGuests={() => selectTab('guests')} />
         )}
-        {activeTab === 'info' && <InfoTab familyForm={familyForm} wedding={wedding} />}
+        {activeTab === 'info' && <InfoTab familyForm={familyForm} giftForm={giftForm} wedding={wedding} />}
         {activeTab === 'guests' && <GuestsTab {...dashboard} />}
         {activeTab === 'photos' && <div className="tab-content"><PhotoManager {...photoManager} /></div>}
         {activeTab === 'music' && <div className="tab-content"><MusicManager {...musicManager} /></div>}

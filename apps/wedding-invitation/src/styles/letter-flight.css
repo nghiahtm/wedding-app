@@ -2,16 +2,16 @@
 .rsvp-form-wrap.is-sending form{animation:form-fold 2.6s ease both}
 .letter-flight{--fly-x:220px;--fly-y:-240px;position:fixed;z-index:45;inset:0;display:grid;place-items:center;pointer-events:none}
 .letter-plane{position:relative;width:150px;height:100px;perspective:600px;animation:letter-fly 2.6s cubic-bezier(.5,0,.3,1) forwards}
-.letter-env-back{position:absolute;inset:0;border-radius:6px;background:linear-gradient(160deg,#842732 0%,#6b1c25 100%)}
-.letter-paper{position:absolute;z-index:1;left:10px;right:10px;top:-60px;height:110px;display:grid;align-content:start;gap:9px;padding:16px 12px;border-radius:4px;background:#fffdf8;box-shadow:0 4px 12px #2c212326;transform-origin:50% 0;animation:letter-paper 2.6s ease forwards}
-.letter-paper i{display:block;height:3px;border-radius:2px;background:#e6d0d3}
+.letter-env-back{position:absolute;inset:0;border-radius:6px;background:linear-gradient(160deg,#546d3e 0%,#425631 100%)}
+.letter-paper{position:absolute;z-index:1;left:10px;right:10px;top:-60px;height:110px;display:grid;align-content:start;gap:9px;padding:16px 12px;border-radius:4px;background:#fbfcfb;box-shadow:0 4px 12px #26292426;transform-origin:50% 0;animation:letter-paper 2.6s ease forwards}
+.letter-paper i{display:block;height:3px;border-radius:2px;background:#dbe1d6}
 .letter-paper i:nth-child(2){width:80%}
 .letter-paper i:nth-child(3){width:60%}
-.letter-env-front{position:absolute;z-index:2;inset:0;border-radius:0 0 6px 6px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);background:linear-gradient(200deg,#b43d4b 0%,#942e3a 55%,#7d242e 100%)}
-.letter-env-flap{position:absolute;z-index:0;left:0;right:0;top:0;height:58%;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#bc414f 0%,#992e3b 100%);transform:rotateX(180deg);animation:letter-flap 2.6s ease forwards}
-.letter-seal{position:absolute;z-index:4;left:50%;top:58%;display:grid;place-items:center;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e8c8ba 0,#be9989 60%,#a1705b 100%);color:#942e3a;font-size:12px;opacity:0;animation:letter-seal 2.6s ease forwards}
+.letter-env-front{position:absolute;z-index:2;inset:0;border-radius:0 0 6px 6px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);background:linear-gradient(200deg,#77965b 0%,#5f7b48 55%,#4f673a 100%)}
+.letter-env-flap{position:absolute;z-index:0;left:0;right:0;top:0;height:58%;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#7c9d60 0%,#627e49 100%);transform:rotateX(180deg);animation:letter-flap 2.6s ease forwards}
+.letter-seal{position:absolute;z-index:4;left:50%;top:58%;display:grid;place-items:center;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d0dcc6 0,#a3b196 60%,#7d906d 100%);color:#5f7b48;font-size:12px;opacity:0;animation:letter-seal 2.6s ease forwards}
 .letter-trail{position:absolute;left:50%;top:50%}
-.letter-trail i{position:absolute;color:#c76571;font-size:14px;font-style:normal;opacity:0;animation:trail-heart 2.6s ease forwards}
+.letter-trail i{position:absolute;color:#94af7e;font-size:14px;font-style:normal;opacity:0;animation:trail-heart 2.6s ease forwards}
 .letter-trail i:nth-child(1){--x:60px;--y:-70px}
 .letter-trail i:nth-child(2){--x:120px;--y:-135px;animation-delay:.08s}
 .letter-trail i:nth-child(3){--x:175px;--y:-190px;animation-delay:.16s}

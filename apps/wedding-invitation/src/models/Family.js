@@ -1,13 +1,14 @@
+import { createLocationModel } from "./Location.js";
+
 const SIDES = [
   { side: "groom", label: "Nhà trai", childLabel: "Chú rể", nameKey: "groomFullName" },
   { side: "bride", label: "Nhà gái", childLabel: "Cô dâu", nameKey: "brideFullName" },
 ];
 
 // Ghép tên bố mẹ (từ API) với tên cô dâu chú rể và địa chỉ nhà (dữ liệu cục bộ).
-// mapAnchorId: id cột bản đồ của bên đó ở mục Địa điểm.
+// mapUrl: liên kết Google Maps tới nhà riêng của bên đó (địa chỉ và nút Chỉ đường cùng dùng liên kết này).
 export function createFamiliesModel(families = {}, weddingDetails) {
   return SIDES.map(({ side, label, childLabel, nameKey }) => {
-    const venue = weddingDetails.sides.find((item) => item.side === side);
     return {
       side,
       label,
@@ -15,12 +16,12 @@ export function createFamiliesModel(families = {}, weddingDetails) {
       mother: String(families[side]?.mother ?? "").trim(),
       childLabel,
       childName: weddingDetails[nameKey],
-      address: venue?.homeAddress ?? "",
-      mapAnchorId: venue?.anchorId ?? "details",
+      address: weddingDetails.homes[side] ?? "",
+      // Liên kết Google Maps tới nhà riêng của bên đó (địa điểm đầu tiên) và bữa cơm thân mật của bên đó.
+      mapUrl: weddingDetails.homes[side]
+        ? createLocationModel({ address: weddingDetails.homes[side], coordinates: weddingDetails.homeCoordinates?.[side] }).mapUrl
+        : "",
+      dinner: weddingDetails.event.dinners?.[side] ?? null,
     };
   });
-}
-
-export function hasParentNames(families) {
-  return families.some((family) => family.father || family.mother);
 }

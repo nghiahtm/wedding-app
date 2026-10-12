@@ -14,11 +14,7 @@ function AlbumSection({ couplePhotos, revealed }) {
 
   return (
     <RevealSection id="album" className="album" from="right" revealed={revealed}>
-      <SectionTitle eyebrow="Khoảnh khắc">
-        Album của
-        <br />
-        chúng mình.
-      </SectionTitle>
+      <SectionTitle>Album ảnh</SectionTitle>
       <div className="album-carousel" {...interactionProps}>
         {hasControls && (
           <button type="button" className="album-arrow is-prev" onClick={prev} aria-label="Ảnh trước">

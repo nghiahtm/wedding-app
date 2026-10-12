@@ -1,5 +1,5 @@
 const wedding = {
-  groomName: 'Minh Nghĩa',
+  groomName: 'Hoàng Nghĩa',
   brideName: 'Đinh Hường',
   date: new Date(2026, 10, 29),
   dateLabel: 'CHỦ NHẬT · 29 THÁNG 11, 2026',

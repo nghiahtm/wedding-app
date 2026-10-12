@@ -113,4 +113,4 @@ npm run build
 
 ## Tùy chỉnh
 
-Tên Minh Nghĩa, Đinh Huòng, ngày cưới và hai địa chỉ bản đồ được cấu hình trong `apps/wedding-invitation/src/app/useInvitation.js` và `apps/admin/src/app/useAdminDashboard.js`. Admin hiện chưa có xác thực, vì vậy chỉ dùng trong môi trường phát triển nội bộ.
+Tên Hoàng Nghĩa, Đinh Huòng, ngày cưới và hai địa chỉ bản đồ được cấu hình trong `apps/wedding-invitation/src/app/useInvitation.js` và `apps/admin/src/app/useAdminDashboard.js`. Admin hiện chưa có xác thực, vì vậy chỉ dùng trong môi trường phát triển nội bộ.

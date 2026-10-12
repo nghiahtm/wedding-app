@@ -1,27 +1,29 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// Từ lúc kéo ảnh ra tới khi vào nội dung: ảnh phóng to, thiệp mờ dần.
-const LEAVE_MS = 1700;
+// Thời gian hiệu ứng rời bìa trước khi vào nội dung (khớp open-effects.css).
+const LEAVE_MS = 900;
 
 const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// State riêng của trang đầu (tấm thiệp mời):
-// stage "card" → "leaving" (kéo ảnh ra) → "open" (nội dung).
+// State riêng của trang đầu (tấm thiệp mời): card → leaving → open.
 // onEnterStart chạy ngay trong sự kiện bấm nút, ví dụ bật nhạc nền.
 export function useCover(onEnterStart) {
-  const [stage, setStage] = useState("card");
+  const [phase, setPhase] = useState("card");
+  const timerRef = useRef(null);
+
+  useEffect(() => () => window.clearTimeout(timerRef.current), []);
 
   function enterInvitation() {
-    if (stage !== "card") return;
+    if (phase !== "card") return;
     onEnterStart?.();
     if (prefersReducedMotion()) {
-      setStage("open");
+      setPhase("open");
       return;
     }
-    setStage("leaving");
-    window.setTimeout(() => setStage("open"), LEAVE_MS);
+    setPhase("leaving");
+    timerRef.current = window.setTimeout(() => setPhase("open"), LEAVE_MS);
   }
 
-  return { stage, isOpen: stage === "open", enterInvitation };
+  return { isOpen: phase === "open", isLeaving: phase === "leaving", enterInvitation };
 }

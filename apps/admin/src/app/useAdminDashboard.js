@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { listRsvps } from '../repositories/rsvpRepository.js';
 import { getVisitStats } from '../repositories/visitRepository.js';
 import { getWedding } from '../repositories/weddingRepository.js';
+import { filterRsvps } from './guestFilters.js';
 
 const { date: weddingDate, ...weddingInfo } = getWedding();
-
-// Bỏ dấu tiếng Việt để tìm "huong" vẫn ra "Hường".
-function normalize(text) {
-  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().trim();
-}
 
 const RECENT_LIMIT = 5;
 
@@ -24,9 +20,14 @@ export function useAdminDashboard() {
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
   const [visitStats, setVisitStats] = useState(null);
 
-  useEffect(() => {
+  // Tải (hoặc làm mới) danh sách hồi đáp và số liệu lượt xem.
+  const reload = useCallback(() => {
+    setLoading(true);
+    setError('');
     listRsvps()
       .then(setRsvps)
       .catch((requestError) => setError(requestError.message))
@@ -36,11 +37,10 @@ export function useAdminDashboard() {
       .catch(() => setVisitStats(null));
   }, []);
 
+  useEffect(reload, [reload]);
+
   const attending = rsvps.filter((rsvp) => rsvp.attendance === 'attending');
-  const query = normalize(search);
-  const visibleRsvps = rsvps
-    .filter((rsvp) => filter === 'all' || rsvp.attendance === filter)
-    .filter((rsvp) => !query || [rsvp.name, rsvp.phone, rsvp.note].some((field) => normalize(field).includes(query)));
+  const visibleRsvps = filterRsvps(rsvps, { filter, search, dateFrom, dateTo });
 
   return {
     rsvps: visibleRsvps,
@@ -48,6 +48,8 @@ export function useAdminDashboard() {
     totalRsvps: rsvps.length,
     filter,
     search,
+    dateFrom,
+    dateTo,
     loading,
     error,
     summary: {
@@ -58,6 +60,9 @@ export function useAdminDashboard() {
     visitStats,
     wedding: { ...weddingInfo, daysUntilWedding: getDaysUntilWedding() },
     onFilterChange: setFilter,
-    onSearchChange: setSearch
+    onSearchChange: setSearch,
+    onDateFromChange: setDateFrom,
+    onDateToChange: setDateTo,
+    onRefresh: reload
   };
 }

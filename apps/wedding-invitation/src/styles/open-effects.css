@@ -1,0 +1,17 @@
+.invitation-cover.is-leaving{animation:cover-fade .9s ease .1s forwards;pointer-events:none}
+.invitation-cover.is-leaving .invitation-card-view{animation:card-leave .8s cubic-bezier(.5,0,.75,.4) forwards}
+.invitation-cover.is-leaving .invitation-card-heart{animation:heart-pulse .6s ease both}
+.invitation-cover.is-leaving:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,var(--blush-0) 0%,transparent 65%);opacity:0;animation:cover-glow .9s ease forwards;pointer-events:none}
+.invitation-content{animation:content-in 1s ease backwards}
+.invitation-content .hero-eyebrow{animation:content-rise .9s cubic-bezier(.2,.7,.25,1) .35s backwards}
+.invitation-content .hero-names{animation:content-rise .9s cubic-bezier(.2,.7,.25,1) .5s backwards}
+.invitation-content .hero-polaroid{animation:content-rise 1s cubic-bezier(.2,.7,.25,1) .7s backwards}
+@keyframes card-leave{0%{opacity:1;transform:none}30%{transform:translateY(8px) scale(.98)}100%{opacity:0;transform:translateY(-90px) scale(1.06)}}
+@keyframes heart-pulse{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+@keyframes cover-fade{0%{opacity:1}70%{opacity:1}100%{opacity:0}}
+@keyframes cover-glow{0%{opacity:0}50%{opacity:.9}100%{opacity:.4}}
+@keyframes content-in{from{opacity:0}to{opacity:1}}
+@keyframes content-rise{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){
+  .invitation-content,.invitation-content .hero-eyebrow,.invitation-content .hero-names,.invitation-content .hero-polaroid{animation:none}
+}

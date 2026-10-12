@@ -1,4 +1,4 @@
-footer{min-height:125px;padding:25px 7vw;display:flex;align-items:center;justify-content:space-between;gap:24px}
+footer{min-height:125px;padding:25px 7vw;display:flex;align-items:center;justify-content:center;gap:24px;text-align:center}
 footer p{color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:14px}
 footer>span{font-size:10px;letter-spacing:.1em;color:var(--muted)}
 @media(max-width:760px){

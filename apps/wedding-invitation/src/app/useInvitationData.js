@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { emptyGifts } from "../models/Gift.js";
 import { emptyPhotos } from "../models/Photo.js";
-import { hasParentNames } from "../models/Family.js";
 import { getFamilies } from "../repositories/familyRepository.js";
+import { getGifts } from "../repositories/giftRepository.js";
 import { getMusic } from "../repositories/musicRepository.js";
 import { listPhotos } from "../repositories/photoRepository.js";
-import { getSections } from "../repositories/sectionRepository.js";
 import {
   getVisitSummary,
   recordVisit,
@@ -12,7 +12,6 @@ import {
 import { getWeddingDetails } from "../repositories/weddingRepository.js";
 
 const weddingDetails = getWeddingDetails();
-const sections = getSections();
 
 // Tải dữ liệu dùng chung cho thiệp. Thiệp vẫn hiển thị nếu chưa tải được ảnh hoặc nhạc.
 export function useInvitationData() {
@@ -20,6 +19,7 @@ export function useInvitationData() {
   const [music, setMusic] = useState(null);
   const [visitSummary, setVisitSummary] = useState(null);
   const [families, setFamilies] = useState([]);
+  const [gifts, setGifts] = useState(emptyGifts);
 
   useEffect(() => {
     listPhotos()
@@ -29,7 +29,10 @@ export function useInvitationData() {
       .then(setMusic)
       .catch(() => {});
     getFamilies()
-      .then((list) => setFamilies(hasParentNames(list) ? list : []))
+      .then(setFamilies)
+      .catch(() => {});
+    getGifts()
+      .then(setGifts)
       .catch(() => {});
     // Ghi lượt xem trước rồi mới đếm, để con số đã gồm cả người đang xem.
     recordVisit()
@@ -39,5 +42,5 @@ export function useInvitationData() {
       .catch(() => {});
   }, []);
 
-  return { weddingDetails, sections, photos, music, visitSummary, families };
+  return { weddingDetails, photos, music, visitSummary, families, gifts };
 }

@@ -1,10 +1,10 @@
 import { Send } from "lucide-react";
 import RevealSection from "../shared/RevealSection.jsx";
 import SectionTitle from "../shared/SectionTitle.jsx";
-import TextField from "../shared/TextField.jsx";
+import TextField, { RequiredMark } from "../shared/TextField.jsx";
 import LetterFlight from "./LetterFlight.jsx";
 
-function RsvpSection({ weddingDetails, rsvp, revealed }) {
+function RsvpSection({ rsvp, revealed }) {
   const {
     form,
     fieldErrors,
@@ -20,7 +20,7 @@ function RsvpSection({ weddingDetails, rsvp, revealed }) {
   return (
     <RevealSection id="rsvp" className="rsvp" from="left" revealed={revealed}>
       <div className="rsvp-heading">
-        <SectionTitle eyebrow={`Hồi đáp ngày ${weddingDetails.dateShort}`}>
+        <SectionTitle>
           Bạn sẽ đến chứ?
         </SectionTitle>
         <p>Cho chúng mình biết để chuẩn bị đón bạn chu đáo, và gửi đôi lời chúc nhé.</p>
@@ -52,7 +52,10 @@ function RsvpSection({ weddingDetails, rsvp, revealed }) {
             error={fieldErrors.phone}
           />
           <label>
-            Bạn sẽ tham dự?
+            <span>
+              Bạn sẽ tham dự?
+              <RequiredMark />
+            </span>
             <select
               name="attendance"
               value={form.attendance}
@@ -70,11 +73,12 @@ function RsvpSection({ weddingDetails, rsvp, revealed }) {
               name="guests"
               value={form.guests}
               onChange={updateField}
+              required
               error={fieldErrors.guests}
             />
           )}
           <label>
-            Lời nhắn <span className="optional">(không bắt buộc)</span>
+            Lời nhắn
             <textarea
               maxLength={maxNoteLength}
               name="note"

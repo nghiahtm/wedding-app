@@ -1,0 +1,9 @@
+.petal-fall{position:fixed;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+.petal{position:absolute;top:-30px;border-radius:70% 0 70% 0;opacity:0;animation:petal-drift 18s linear infinite;will-change:transform}
+.petal-tone-0{background:linear-gradient(135deg,var(--accent),var(--rose-gold))}
+.petal-tone-1{background:linear-gradient(135deg,var(--rose-gold),var(--blush-3))}
+.petal-tone-2{background:linear-gradient(135deg,var(--blush-3),var(--blush-2));box-shadow:0 0 0 1px var(--line)}
+@keyframes petal-drift{0%{opacity:0;transform:translate(0,0) rotate(0)}8%{opacity:.85}30%{transform:translate(var(--petal-sway),30vh) rotate(110deg)}55%{transform:translate(calc(var(--petal-sway) * -.6),62vh) rotate(230deg)}80%{opacity:.8;transform:translate(var(--petal-sway),92vh) rotate(330deg)}100%{opacity:0;transform:translate(0,112vh) rotate(420deg)}}
+@media(prefers-reduced-motion:reduce){
+  .petal-fall{display:none}
+}

@@ -1,0 +1,54 @@
+.event-wrap{position:relative;width:min(100%,var(--content-w));margin:0 auto}
+.event-paper{position:relative;z-index:1;padding:48px 36px 52px;background:linear-gradient(180deg,#e8eee2 0%,#e0e8d9 100%);box-shadow:0 18px 40px #5460492e,0 0 0 1px #93a18629;text-align:center}
+.event-paper:before{content:'';position:absolute;inset:8px;border:1px solid #93a1864d;pointer-events:none}
+.event-paper>*{position:relative}
+.event-paper .event-title{margin:0 0 18px;color:var(--ink);font-family:var(--font-heading);font-size:56px;font-weight:400;letter-spacing:0;line-height:1.15}
+.event-lead{margin:0;color:#51584b;font-family:'Playfair Display',Georgia,serif;font-size:24px;letter-spacing:.04em;text-transform:uppercase}
+.event-time{margin:14px 0 0;color:var(--muted);font-family:'Playfair Display',Georgia,serif;font-size:34px}
+.event-day{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:26px;color:#51584b;font-family:'Playfair Display',Georgia,serif;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.event-day strong{padding:0 16px;border-inline:1px solid #7d9868;font-size:44px;font-weight:400;line-height:1.1;letter-spacing:0}
+.event-year{margin:16px 0 0;color:#51584b;font-family:'Playfair Display',Georgia,serif;font-size:24px}
+.event-lunar{margin:14px 0 0;color:var(--muted);font-family:'Playfair Display',Georgia,serif;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.event-start{display:grid;gap:2px;margin:22px 0 0;color:#51584b;font-family:'Playfair Display',Georgia,serif;font-size:22px}
+.event-start small{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.wedding-calendar{width:min(100%,400px);margin:30px auto 0;padding:20px 18px 22px;border-radius:10px;background:var(--accent-deep);box-shadow:0 10px 22px #4e5c3a40;color:#eef3e6}
+.calendar-title{margin:0 0 8px;padding-bottom:8px;border-bottom:1px solid #eef3e659;font-family:var(--font-heading);font-size:28px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px 0;font-family:'Playfair Display',Georgia,serif;font-size:15px}
+.calendar-weekday{color:#d3dec3;font-size:12px;letter-spacing:.04em}
+.calendar-day{display:grid;place-items:center;height:34px}
+.calendar-day.is-wedding{position:relative;color:var(--accent-deep);font-weight:700}
+.calendar-day.is-wedding b{position:relative;padding-bottom:2px;font-weight:700}
+.calendar-heart{position:absolute;left:50%;top:50%;width:40px;height:37px;margin:-19px 0 0 -20px;overflow:visible}
+.calendar-heart path{transform-box:fill-box;transform-origin:center}
+.calendar-heart-fill{fill:#f3f6ee;animation:heart-pop 3.2s ease-in-out infinite}
+.calendar-heart-line{fill:none;stroke:var(--rose-gold);stroke-width:1.1;stroke-linecap:round;stroke-dasharray:.28 .72;animation:heart-orbit 2.6s linear infinite}
+.calendar-heart-ring{fill:none;stroke:#f3f6ee;stroke-width:.5;animation:heart-ripple 2.6s ease-out infinite}
+@keyframes heart-orbit{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes heart-ripple{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes heart-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.event-calendar-link{display:inline-block;margin-top:24px;color:#51584b;font-family:'Playfair Display',Georgia,serif;font-size:16px;text-decoration:underline;text-underline-offset:3px}
+.event-calendar-link:hover,.event-calendar-link:focus-visible{color:var(--ink)}
+.event-confirm{display:block;margin:18px auto 0;padding:14px 34px;border:0;border-radius:999px;background:var(--accent-deep);color:#f3f6ee;font-family:'Playfair Display',Georgia,serif;font-size:15px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 18px #4e5c3a40;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.event-confirm:hover,.event-confirm:focus-visible{transform:translateY(-2px);box-shadow:0 12px 24px #4e5c3a52}
+.event-confirm:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.event-leaves{position:absolute;z-index:0;right:-130px;top:40px;width:180px;height:auto;opacity:.85;transform:scaleX(-1);pointer-events:none}
+.event-flower{position:absolute;z-index:2;left:-96px;bottom:-34px;width:150px;height:auto;pointer-events:none}
+@media(max-width:560px){
+  .event-paper{padding:34px 16px 38px}
+  .event-paper .event-title{font-size:clamp(32px,10.5vw,42px)}
+  .event-lead{font-size:clamp(13px,4.5vw,18px);letter-spacing:.02em;white-space:nowrap}
+  .event-day{gap:10px;font-size:clamp(11px,3.7vw,17px);white-space:nowrap}
+  .event-day strong{padding:0 12px}
+  .event-lunar{font-size:clamp(9px,2.95vw,14px);letter-spacing:.06em;white-space:nowrap}
+  .event-time{font-size:28px}
+  .wedding-calendar{padding:16px 12px 18px}
+  .calendar-grid{font-size:13px}
+  .calendar-day{height:30px}
+  .event-leaves{right:-70px;top:90px;width:130px}
+  .event-flower{left:-30px;width:96px}
+}
+@media(prefers-reduced-motion:reduce){
+  .event-confirm{transition:none}
+  .calendar-heart path{animation:none}
+  .calendar-heart-ring{opacity:0}
+}

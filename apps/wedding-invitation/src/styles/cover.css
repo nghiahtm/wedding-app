@@ -1,13 +1,4 @@
-.invitation-cover{--paper:#f7dfe2;--ivory:#fef3f4;--wine:#942e3a;--gold:#ae8979;--charcoal:#2c2123;position:relative;min-height:100svh;display:grid;place-items:center;padding:52px 24px;overflow:hidden;color:var(--charcoal);background:radial-gradient(ellipse 70% 55% at 50% 40%,var(--blush-0) 0%,var(--blush-1) 55%,var(--blush-2) 100%),var(--paper)}
-.invitation-cover:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,#ae897908 0 1px,transparent 1px 7px),repeating-linear-gradient(-45deg,#ae897906 0 1px,transparent 1px 7px);pointer-events:none}
-.cover-frame{position:absolute;inset:18px;border:1px solid #ae89798c;pointer-events:none}
-.cover-frame:before{content:'';position:absolute;inset:6px;border:1px solid #ae897940}
-.cover-frame:after{content:'';position:absolute;inset:-18px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20120%20120'%20fill%3D'none'%20stroke%3D'%23ae8979'%20stroke-width%3D'1.2'%20stroke-linecap%3D'round'%3E%3Cg%20transform%3D''%3E%3Cpath%20d%3D'M8%20112C30%2080%2052%2052%20112%208'%2F%3E%3Cpath%20d%3D'M30%2082c-10-2-16-10-16-18%209%201%2015%208%2016%2018zM30%2082c2-10%2010-15%2018-15-2%209-9%2014-18%2015z'%2F%3E%3Cpath%20d%3D'M52%2056c-10-2-16-10-16-18%209%201%2015%208%2016%2018zM52%2056c2-10%2010-15%2018-15-2%209-9%2014-18%2015z'%2F%3E%3Cpath%20d%3D'M76%2034c-9-3-14-11-13-19%208%202%2013%2010%2013%2019zM76%2034c3-9%2011-13%2019-12-3%208-10%2012-19%2012z'%2F%3E%3Ccircle%20cx%3D'104'%20cy%3D'14'%20r%3D'2.4'%20fill%3D'%23ae8979'%20stroke%3D'none'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") left 6px bottom 6px/clamp(90px,14vw,150px) no-repeat,url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20120%20120'%20fill%3D'none'%20stroke%3D'%23ae8979'%20stroke-width%3D'1.2'%20stroke-linecap%3D'round'%3E%3Cg%20transform%3D'rotate(180%2060%2060)'%3E%3Cpath%20d%3D'M8%20112C30%2080%2052%2052%20112%208'%2F%3E%3Cpath%20d%3D'M30%2082c-10-2-16-10-16-18%209%201%2015%208%2016%2018zM30%2082c2-10%2010-15%2018-15-2%209-9%2014-18%2015z'%2F%3E%3Cpath%20d%3D'M52%2056c-10-2-16-10-16-18%209%201%2015%208%2016%2018zM52%2056c2-10%2010-15%2018-15-2%209-9%2014-18%2015z'%2F%3E%3Cpath%20d%3D'M76%2034c-9-3-14-11-13-19%208%202%2013%2010%2013%2019zM76%2034c3-9%2011-13%2019-12-3%208-10%2012-19%2012z'%2F%3E%3Ccircle%20cx%3D'104'%20cy%3D'14'%20r%3D'2.4'%20fill%3D'%23ae8979'%20stroke%3D'none'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") right 6px top 6px/clamp(90px,14vw,150px) no-repeat;opacity:.9}
-.cover-frame{transition:opacity .4s ease,transform .5s ease}
+.invitation-cover{position:relative;min-height:100svh;display:grid;place-items:center;padding:40px 20px;overflow:hidden;background:var(--blush-1)}
 @media(max-width:600px){
-  .invitation-cover{padding:44px 20px}
-  .cover-frame{inset:10px}
-}
-@media(prefers-reduced-motion:reduce){
-  .cover-frame{transition:none}
+  .invitation-cover{padding:28px 16px}
 }

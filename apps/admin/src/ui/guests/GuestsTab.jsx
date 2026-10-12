@@ -1,8 +1,8 @@
-import { Search } from 'lucide-react';
+import { RefreshCw, Search } from 'lucide-react';
 import GuestTable from './GuestTable.jsx';
 
-// Tab Khách mời: tìm kiếm, lọc theo trạng thái và bảng hồi đáp.
-function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, onFilterChange, onSearchChange }) {
+// Tab Khách mời: làm mới, tìm kiếm, lọc theo trạng thái / ngày gửi và bảng hồi đáp.
+function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, dateFrom, dateTo, onFilterChange, onSearchChange, onDateFromChange, onDateToChange, onRefresh }) {
   return (
     <div className="tab-content">
       <section className="panel">
@@ -20,6 +20,21 @@ function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, onFilter
               <option value="declined">Không tham dự</option>
             </select>
           </label>
+          <label className="date-field">
+            <span>Từ ngày</span>
+            <input type="date" value={dateFrom} max={dateTo || undefined} onChange={(event) => onDateFromChange(event.target.value)} />
+          </label>
+          <label className="date-field">
+            <span>Đến ngày</span>
+            <input type="date" value={dateTo} min={dateFrom || undefined} onChange={(event) => onDateToChange(event.target.value)} />
+          </label>
+          {(dateFrom || dateTo) && (
+            <button type="button" className="ghost-button" onClick={() => { onDateFromChange(''); onDateToChange(''); }}>Xóa lọc ngày</button>
+          )}
+          <button type="button" className="refresh-button" onClick={onRefresh} disabled={loading}>
+            <RefreshCw size={15} strokeWidth={1.9} aria-hidden="true" className={loading ? 'is-spinning' : undefined} />
+            Làm mới
+          </button>
           <span className="result-count" role="status">{loading ? '' : `${rsvps.length}/${totalRsvps} hồi đáp`}</span>
         </div>
         {error && <p className="notice" role="status">{error} Hãy kiểm tra backend và MongoDB.</p>}

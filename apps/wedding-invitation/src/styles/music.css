@@ -1,7 +1,7 @@
-.music-toggle{position:fixed;z-index:20;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));display:grid;place-items:center;width:46px;height:46px;border:1px solid #e3c6c9;border-radius:50%;background:linear-gradient(120deg,#fff6f7 0%,#f8dfe2 100%);color:var(--accent);box-shadow:0 8px 22px #b5314026;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
-.music-toggle:hover{transform:translateY(-2px);box-shadow:0 12px 26px #b5314033}
-.music-toggle:focus-visible{outline:2px solid #caa190;outline-offset:3px}
-.music-toggle.is-playing{background:linear-gradient(135deg,#e2949d 0%,#c76571 50%,#b53140 100%);border-color:#c76571;color:#feeff1}
+.music-toggle{position:fixed;z-index:20;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));display:grid;place-items:center;width:46px;height:46px;border:1px solid #d4dccd;border-radius:50%;background:linear-gradient(120deg,#fafcf9 0%,#ebf1e6 100%);color:var(--accent);box-shadow:0 8px 22px #71935326;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.music-toggle:hover{transform:translateY(-2px);box-shadow:0 12px 26px #71935333}
+.music-toggle:focus-visible{outline:2px solid #acbc9f;outline-offset:3px}
+.music-toggle.is-playing{background:linear-gradient(135deg,#bacea8 0%,#94af7e 50%,#719353 100%);border-color:#94af7e;color:#f6f9f4}
 .music-toggle.is-playing svg{animation:music-bob 1.6s ease-in-out infinite}
 @keyframes music-bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-8deg)}}
 @media(prefers-reduced-motion:reduce){
