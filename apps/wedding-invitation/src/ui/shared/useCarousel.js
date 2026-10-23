@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+const SWIPE_WRAP_PX = 40;
+
 // Carousel cuộn ngang bằng scroll-snap (hành vi thuần giao diện):
 // theo dõi ảnh đang ở giữa, chuyển ảnh, tự chạy và dừng khi khách tương tác.
 export function useCarousel(trackRef, count, autoplayMs = 3000) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const resumeTimerRef = useRef(null);
+  const touchStartXRef = useRef(0);
 
   const goTo = useCallback(
     (index) => {
@@ -74,6 +77,13 @@ export function useCarousel(trackRef, count, autoplayMs = 3000) {
     window.clearTimeout(resumeTimerRef.current);
     setIsPaused(true);
   };
+  // Đang ở ảnh cuối mà vuốt sang trái tiếp thì quay về ảnh đầu (và ngược lại ở ảnh đầu).
+  const wrapOnSwipe = (event) => {
+    const dx = event.changedTouches[0].clientX - touchStartXRef.current;
+    if (Math.abs(dx) < SWIPE_WRAP_PX) return;
+    if (dx < 0 && activeIndex === count - 1) goTo(0);
+    else if (dx > 0 && activeIndex === 0) goTo(count - 1);
+  };
   const resumeLater = () => {
     window.clearTimeout(resumeTimerRef.current);
     resumeTimerRef.current = window.setTimeout(() => setIsPaused(false), 3000);
@@ -87,8 +97,14 @@ export function useCarousel(trackRef, count, autoplayMs = 3000) {
     interactionProps: {
       onPointerEnter: pause,
       onPointerLeave: resumeLater,
-      onTouchStart: pause,
-      onTouchEnd: resumeLater,
+      onTouchStart: (event) => {
+        touchStartXRef.current = event.touches[0].clientX;
+        pause();
+      },
+      onTouchEnd: (event) => {
+        wrapOnSwipe(event);
+        resumeLater();
+      },
       onFocus: pause,
       onBlur: resumeLater,
     },

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const PHOTO_CATEGORIES = ['couple', 'invitation', 'qr'];
+export const PHOTO_CATEGORIES = ['cover', 'couple', 'invitation', 'qr'];
 export const PHOTO_SIDES = ['groom', 'bride'];
 export const PHOTO_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 export const MAX_COUPLE_PHOTOS = 10;

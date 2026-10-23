@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deletePhoto, listPhotos, MAX_COUPLE_PHOTOS, uploadPhoto } from '../repositories/photoRepository.js';
 import { prepareImage } from './prepareImage.js';
+import { useQrCrop } from './useQrCrop.js';
 
 function findSlot(photos, category, side) {
   return photos.find((photo) => photo.category === category && photo.side === side) ?? null;
@@ -47,7 +48,7 @@ export function usePhotoManager() {
   }
 
   function uploadSlotPhoto(category, side, file) {
-    return runBusy(`${category}-${side}`, async () => {
+    return runBusy(`${category}-${side ?? 'main'}`, async () => {
       const prepared = await prepareImage(file, { keepOriginal: category === 'qr' });
       const photo = await uploadPhoto(prepared, { category, side });
       setPhotos((current) => [...current.filter((item) => !(item.category === category && item.side === side)), photo]);
@@ -62,6 +63,9 @@ export function usePhotoManager() {
     });
   }
 
+  // Ảnh QR phải cắt sát mã trước khi tải lên.
+  const qrCrop = useQrCrop({ upload: (side, file) => uploadSlotPhoto('qr', side, file), onError: setMessage });
+
   return {
     loading,
     message,
@@ -69,11 +73,13 @@ export function usePhotoManager() {
     couplePhotos,
     maxCouplePhotos: MAX_COUPLE_PHOTOS,
     slots: {
+      cover: { main: findSlot(photos, 'cover', null) },
       invitation: { groom: findSlot(photos, 'invitation', 'groom'), bride: findSlot(photos, 'invitation', 'bride') },
       qr: { groom: findSlot(photos, 'qr', 'groom'), bride: findSlot(photos, 'qr', 'bride') }
     },
     uploadCouplePhotos,
     uploadSlotPhoto,
+    qrCrop,
     removePhoto
   };
 }

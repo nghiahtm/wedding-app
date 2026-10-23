@@ -61,7 +61,7 @@ router.post('/', requireAdmin, express.raw({ type: () => true, limit: '6mb' }), 
     const side = request.query.side || null;
     if (!PHOTO_CATEGORIES.includes(category)) return badRequest(response, 'category', 'Loại ảnh không hợp lệ.');
     if (SLOT_CATEGORIES.includes(category) && !PHOTO_SIDES.includes(side)) return badRequest(response, 'side', 'Cần chọn nhà trai hoặc nhà gái.');
-    if (category === 'couple' && side) return badRequest(response, 'side', 'Ảnh cô dâu chú rể không cần chọn bên.');
+    if (!SLOT_CATEGORIES.includes(category) && side) return badRequest(response, 'side', 'Loại ảnh này không cần chọn bên.');
 
     const data = Buffer.isBuffer(request.body) ? request.body : Buffer.alloc(0);
     const contentType = detectImageType(data);
@@ -72,8 +72,8 @@ router.post('/', requireAdmin, express.raw({ type: () => true, limit: '6mb' }), 
     }
 
     const photo = await Photo.create({ category, side, contentType, size: data.length, data });
-    // Thiệp cưới và QR mỗi bên chỉ giữ một ảnh: ảnh mới thay ảnh cũ.
-    if (SLOT_CATEGORIES.includes(category)) {
+    // Ảnh tiêu đề, thiệp cưới và QR mỗi bên chỉ giữ một ảnh: ảnh mới thay ảnh cũ.
+    if (category === 'cover' || SLOT_CATEGORIES.includes(category)) {
       await Photo.deleteMany({ category, side, _id: { $ne: photo._id } });
     }
     response.status(201).json(successResponse(toPhotoResponse(photo), 'Tải ảnh lên thành công.'));

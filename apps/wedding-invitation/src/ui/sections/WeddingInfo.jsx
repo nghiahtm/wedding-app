@@ -58,7 +58,7 @@ function WeddingInfo({ families, weddingDetails }) {
       <WatercolorLeaves className="info-leaves" />
       <img className="info-flower" src="/images/flower2-decoration.webp" alt="" aria-hidden="true" />
       <div className="info-paper">
-        <h2 className="info-title">Thông tin lễ cưới</h2>
+        <h2 className="info-title">Thiệp cưới</h2>
         <div className="info-families">
           <FamilyColumn family={groomFamily} />
           <FamilyColumn family={brideFamily} />

@@ -29,7 +29,7 @@ function InvitationContent({
       className={`invitation-content${reveal.isEnabled ? " has-scroll-reveal" : ""}`}
     >
       <PetalFall />
-      <HeroSection weddingDetails={weddingDetails} coverPhoto={photos.couple[0]} />
+      <HeroSection weddingDetails={weddingDetails} coverPhoto={photos.cover} />
       <StorySection
         weddingDetails={weddingDetails}
         families={families}

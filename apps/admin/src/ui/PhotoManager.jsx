@@ -1,3 +1,5 @@
+import QrCropDialog from './QrCropDialog.jsx';
+
 const ACCEPT = 'image/jpeg,image/png,image/webp';
 
 function pickFiles(handler) {
@@ -28,13 +30,13 @@ function PhotoSlot({ label, hint, photo, busy, onUpload, onRemove, fit = 'cover'
   );
 }
 
-function PhotoManager({ loading, message, busyKeys, couplePhotos, maxCouplePhotos, slots, uploadCouplePhotos, uploadSlotPhoto, removePhoto }) {
+function PhotoManager({ loading, message, busyKeys, couplePhotos, maxCouplePhotos, slots, uploadCouplePhotos, uploadSlotPhoto, qrCrop, removePhoto }) {
   const coupleBusy = busyKeys.includes('couple');
   const coupleFull = couplePhotos.length >= maxCouplePhotos;
   const slotProps = (category, side) => ({
     photo: slots[category][side],
     busy: busyKeys.includes(`${category}-${side}`) || busyKeys.includes(slots[category][side]?.id),
-    onUpload: (file) => uploadSlotPhoto(category, side, file),
+    onUpload: (file) => (category === 'qr' ? qrCrop.request(side, file) : uploadSlotPhoto(category, side === 'main' ? null : side, file)),
     onRemove: removePhoto
   });
 
@@ -45,12 +47,18 @@ function PhotoManager({ loading, message, busyKeys, couplePhotos, maxCouplePhoto
       {loading ? <p className="empty-state photo-loading">Đang tải hình ảnh...</p> : (
         <div className="photo-groups">
           <div className="photo-group">
-            <div className="photo-group-heading"><h3>Ảnh cô dâu & chú rể</h3><span>{couplePhotos.length}/{maxCouplePhotos} ảnh · ảnh đầu tiên làm ảnh bìa</span></div>
+            <div className="photo-group-heading"><h3>Ảnh tiêu đề</h3><span>Ảnh polaroid đầu trang thiệp · tách riêng khỏi album</span></div>
+            <div className="photo-slots">
+              <PhotoSlot label="Ảnh tiêu đề" hint="Chưa có ảnh tiêu đề" {...slotProps('cover', 'main')} />
+            </div>
+          </div>
+
+          <div className="photo-group">
+            <div className="photo-group-heading"><h3>Album ảnh cưới</h3><span>{couplePhotos.length}/{maxCouplePhotos} ảnh</span></div>
             <div className="photo-grid">
               {couplePhotos.map((photo, index) => (
                 <figure className="photo-thumb" key={photo.id}>
                   <img src={photo.url} alt={`Ảnh cưới ${index + 1}`} />
-                  {index === 0 && <span className="photo-badge">Ảnh bìa</span>}
                   <button type="button" className="photo-remove" disabled={busyKeys.includes(photo.id)} onClick={() => removePhoto(photo)} aria-label={`Xóa ảnh cưới ${index + 1}`}>×</button>
                 </figure>
               ))}
@@ -72,7 +80,7 @@ function PhotoManager({ loading, message, busyKeys, couplePhotos, maxCouplePhoto
           </div>
 
           <div className="photo-group">
-            <div className="photo-group-heading"><h3>QR mừng cưới</h3><span>Hiện trong hộp quà khi khách mở · giữ ảnh gốc để quét rõ</span></div>
+            <div className="photo-group-heading"><h3>QR mừng cưới</h3><span>Hiện trong hộp quà khi khách mở · chọn ảnh rồi cắt sát mã QR</span></div>
             <div className="photo-slots">
               <PhotoSlot label="QR chú rể" hint="Chưa có mã QR chú rể" fit="contain" {...slotProps('qr', 'groom')} />
               <PhotoSlot label="QR cô dâu" hint="Chưa có mã QR cô dâu" fit="contain" {...slotProps('qr', 'bride')} />
@@ -80,6 +88,7 @@ function PhotoManager({ loading, message, busyKeys, couplePhotos, maxCouplePhoto
           </div>
         </div>
       )}
+      {qrCrop.pending && <QrCropDialog url={qrCrop.pending.url} onConfirm={qrCrop.confirm} onCancel={qrCrop.cancel} />}
     </section>
   );
 }

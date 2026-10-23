@@ -13,6 +13,7 @@ export function groupPhotos(photos) {
   const findSlot = (category, side) =>
     photos.find((photo) => photo.category === category && photo.side === side) ?? null;
   return {
+    cover: photos.find((photo) => photo.category === "cover") ?? null,
     couple: photos.filter((photo) => photo.category === "couple"),
     invitation: { groom: findSlot("invitation", "groom"), bride: findSlot("invitation", "bride") },
     qr: { groom: findSlot("qr", "groom"), bride: findSlot("qr", "bride") },

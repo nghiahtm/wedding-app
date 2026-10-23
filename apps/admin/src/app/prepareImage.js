@@ -2,7 +2,7 @@ const MAX_DIMENSION = 2000;
 const MAX_UNTOUCHED_BYTES = 1.5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
-function loadImage(file) {
+export function loadImage(file) {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file);
     const image = new Image();

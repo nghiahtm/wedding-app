@@ -55,9 +55,6 @@ function AlbumSection({ couplePhotos, revealed }) {
               />
             ))}
           </div>
-          <p className="album-counter" aria-live="polite">
-            {activeIndex + 1} / {count}
-          </p>
         </div>
       )}
     </RevealSection>
