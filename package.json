@@ -8,6 +8,7 @@
     "dev:api": "npm run dev --prefix apps/api",
     "dev:invitation": "npm run dev --prefix apps/wedding-invitation",
     "dev:admin": "npm run dev --prefix apps/admin",
+    "dev:admin:prod": "npm run dev:prod --prefix apps/admin",
     "build": "npm run build --workspace apps/wedding-invitation && npm run build --workspace apps/admin"
   },
   "devDependencies": { "concurrently": "^9.1.2" }
