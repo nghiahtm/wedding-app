@@ -1,9 +1,9 @@
-# HTTPS tự động (Let's Encrypt). Tên miền chính là www; tên miền gốc chuyển hướng sang www.
-www.huongnghiawedding.com {
+# HTTPS tự động (Let's Encrypt). Tên miền chính không có www; www chuyển hướng về tên miền chính.
+huongnghiawedding.com {
 	encode gzip
 	reverse_proxy wedding-invitation:80
 }
 
-huongnghiawedding.com {
-	redir https://www.huongnghiawedding.com{uri} permanent
+www.huongnghiawedding.com {
+	redir https://huongnghiawedding.com{uri} permanent
 }
