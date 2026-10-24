@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// Phát nhạc nền lặp lại; tạm dừng khi khách chuyển tab và phát tiếp khi quay lại.
+// Phát nhạc nền lặp lại, tự phát ngay khi vào trang (hoặc ở lần chạm đầu tiên nếu trình duyệt chặn); tạm dừng khi khách chuyển tab và phát tiếp khi quay lại.
 export function useBackgroundMusic(music) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -27,8 +27,19 @@ export function useBackgroundMusic(music) {
     }
     document.addEventListener("visibilitychange", handleVisibility);
 
+    // Thử phát ngay khi vào trang. Trình duyệt chặn phát có tiếng khi khách chưa chạm vào trang,
+    // nên nếu bị chặn thì phát ở lần chạm / bấm phím đầu tiên.
+    const gestures = ["pointerdown", "touchend", "keydown"];
+    const stopWaiting = () => gestures.forEach((name) => window.removeEventListener(name, startOnGesture));
+    function startOnGesture() {
+      stopWaiting();
+      if (audio.paused) audio.play().catch(() => {});
+    }
+    audio.play().catch(() => gestures.forEach((name) => window.addEventListener(name, startOnGesture, { once: true, passive: true })));
+
     return () => {
       document.removeEventListener("visibilitychange", handleVisibility);
+      stopWaiting();
       audio.pause();
       audioRef.current = null;
     };

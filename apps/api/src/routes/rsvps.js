@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import mongoose from 'mongoose';
 import Rsvp from '../models/Rsvp.js';
 import { errorResponse, successResponse, validationErrors } from '../utils/dataResponse.js';
 import { requireAdmin } from '../utils/requireAdmin.js';
@@ -32,6 +33,21 @@ router.get('/wishes', async (_request, response, next) => {
       .lean();
     const data = wishes.map(({ _id, name, note, createdAt }) => ({ id: _id, name, message: note, createdAt }));
     response.json(successResponse(data, 'Lời chúc gần đây.'));
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Xóa riêng lời chúc (lời nhắn) của một khách; thông tin hồi đáp tham dự vẫn giữ nguyên.
+router.delete('/:id/note', requireAdmin, async (request, response, next) => {
+  try {
+    const rsvp = mongoose.isValidObjectId(request.params.id)
+      ? await Rsvp.findByIdAndUpdate(request.params.id, { $set: { note: '' } }, { new: true }).lean()
+      : null;
+    if (!rsvp) {
+      return response.status(404).json(errorResponse([{ field: 'id', message: 'Không tìm thấy hồi đáp.' }], 'Không tìm thấy hồi đáp.'));
+    }
+    response.json(successResponse(rsvp, 'Đã xóa lời chúc.'));
   } catch (error) {
     next(error);
   }

@@ -2,7 +2,7 @@ import { RefreshCw, Search } from 'lucide-react';
 import GuestTable from './GuestTable.jsx';
 
 // Tab Khách mời: làm mới, tìm kiếm, lọc theo trạng thái / ngày gửi và bảng hồi đáp.
-function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, dateFrom, dateTo, onFilterChange, onSearchChange, onDateFromChange, onDateToChange, onRefresh }) {
+function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, dateFrom, dateTo, onFilterChange, onSearchChange, onDateFromChange, onDateToChange, onRefresh, onClearNote }) {
   return (
     <div className="tab-content">
       <section className="panel">
@@ -38,7 +38,7 @@ function GuestsTab({ rsvps, totalRsvps, loading, error, filter, search, dateFrom
           <span className="result-count" role="status">{loading ? '' : `${rsvps.length}/${totalRsvps} hồi đáp`}</span>
         </div>
         {error && <p className="notice" role="status">{error} Hãy kiểm tra backend và MongoDB.</p>}
-        <GuestTable rsvps={rsvps} loading={loading} totalRsvps={totalRsvps} />
+        <GuestTable rsvps={rsvps} loading={loading} totalRsvps={totalRsvps} onClearNote={onClearNote} />
       </section>
     </div>
   );

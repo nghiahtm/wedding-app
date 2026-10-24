@@ -27,7 +27,10 @@
 .status{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
 .status.attending{background:#e8f2ea;color:#3f6a4f}
 .status.declined{background:#f8ebe8;color:#a15d51}
-.note-cell{max-width:280px;overflow:hidden;text-overflow:ellipsis}
+.note-cell{max-width:320px}
+.note-text{display:inline-block;max-width:250px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.note-delete{margin-left:8px;display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#a15d51;vertical-align:middle;cursor:pointer}
+.note-delete:hover{border-color:#a15d51;background:#f8ebe8}
 @media(max-width:760px){
   .result-count{margin-left:0}
   .guest-table thead{display:none}

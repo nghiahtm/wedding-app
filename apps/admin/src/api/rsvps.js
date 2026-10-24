@@ -21,3 +21,11 @@ export function fetchRsvps() {
     })
     .then(readResponse);
 }
+
+export function removeRsvpNote(id) {
+  return fetch(`${apiUrl}/api/rsvps/${encodeURIComponent(id)}/note`, { method: 'DELETE' })
+    .catch(() => {
+      throw new Error('Không thể kết nối API. Vui lòng kiểm tra backend.');
+    })
+    .then(readResponse);
+}

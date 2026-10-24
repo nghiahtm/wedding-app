@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { listRsvps } from '../repositories/rsvpRepository.js';
+import { clearRsvpNote, listRsvps } from '../repositories/rsvpRepository.js';
 import { getVisitStats } from '../repositories/visitRepository.js';
 import { getWedding } from '../repositories/weddingRepository.js';
 import { filterRsvps } from './guestFilters.js';
@@ -39,6 +39,17 @@ export function useAdminDashboard() {
 
   useEffect(reload, [reload]);
 
+  // Xóa lời chúc của một khách (giữ nguyên thông tin tham dự); hỏi lại trước khi xóa.
+  async function clearNote(rsvp) {
+    if (!window.confirm(`Xóa lời chúc của ${rsvp.name}? Lời chúc cũng sẽ biến mất khỏi thiệp.`)) return;
+    try {
+      await clearRsvpNote(rsvp.id);
+      setRsvps((current) => current.map((item) => (item.id === rsvp.id ? { ...item, note: '' } : item)));
+    } catch (requestError) {
+      setError(requestError.message);
+    }
+  }
+
   const attending = rsvps.filter((rsvp) => rsvp.attendance === 'attending');
   const visibleRsvps = filterRsvps(rsvps, { filter, search, dateFrom, dateTo });
 
@@ -63,6 +74,7 @@ export function useAdminDashboard() {
     onSearchChange: setSearch,
     onDateFromChange: setDateFrom,
     onDateToChange: setDateTo,
-    onRefresh: reload
+    onRefresh: reload,
+    onClearNote: clearNote
   };
 }
