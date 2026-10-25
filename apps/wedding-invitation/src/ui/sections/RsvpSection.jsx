@@ -47,8 +47,7 @@ function RsvpSection({ rsvp, revealed }) {
             autoComplete="tel"
             value={form.phone}
             onChange={updateField}
-            placeholder="Số điện thoại liên hệ"
-            required
+            placeholder="Số điện thoại (không bắt buộc)"
             error={fieldErrors.phone}
           />
           <label>

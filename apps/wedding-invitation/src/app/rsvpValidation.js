@@ -19,8 +19,8 @@ export function validateRsvp(form) {
   if (!name) errors.name = "Vui lòng nhập họ và tên.";
   else if (name.length > 100)
     errors.name = "Họ và tên không được vượt quá 100 ký tự.";
-  if (!phone) errors.phone = "Vui lòng nhập số điện thoại.";
-  else if (phone.length > 12)
+  // Số điện thoại không bắt buộc; nếu nhập thì không quá 12 ký tự.
+  if (phone.length > 12)
     errors.phone = "Số điện thoại không được vượt quá 12 ký tự.";
   if (form.attendance === "attending") {
     if (!guests) errors.guests = "Vui lòng nhập số khách.";
