@@ -9,6 +9,7 @@
     "dev:invitation": "npm run dev --prefix apps/wedding-invitation",
     "dev:admin": "npm run dev --prefix apps/admin",
     "dev:admin:prod": "npm run dev:prod --prefix apps/admin",
+    "deploy": "bash scripts/deploy.sh",
     "build": "npm run build --workspace apps/wedding-invitation && npm run build --workspace apps/admin"
   },
   "devDependencies": { "concurrently": "^9.1.2" }
