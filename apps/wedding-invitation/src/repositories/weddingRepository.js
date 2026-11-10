@@ -47,7 +47,6 @@ const weddingDetails = {
     lunar: "Tức ngày 21/10 năm Bính Ngọ âm lịch",
     // Bữa cơm thân mật mỗi bên (mục Thông tin lễ cưới); đổi giờ, ngày, nơi ở đây. Bỏ một bên khỏi danh sách thì ẩn bên đó.
     dinners: {
-      groom: { title: "Bữa cơm thân mật - Nhà trai", time: "17 : 00", weekday: "Thứ bảy", date: "28/11/2026", place: "Tại tư gia nhà trai" },
       bride: { title: "Bữa cơm thân mật - Nhà gái", time: "16 : 00", weekday: "Thứ bảy", date: "28/11/2026", place: "Tại tư gia nhà gái" },
     },
   },
