@@ -2,7 +2,9 @@ import { MapPin } from "lucide-react";
 
 // Bữa cơm thân mật của một bên: giờ, ngày, nơi và liên kết chỉ đường (mở Google Maps của bên đó).
 function DinnerInfo({ family }) {
-  const { dinner, mapUrl } = family;
+  const { dinner } = family;
+  // Bữa cơm tổ chức ở nơi khác nhà riêng (vd. khách sạn) thì dùng bản đồ riêng của bữa cơm đó.
+  const mapUrl = dinner?.mapUrl || family.mapUrl;
   if (!dinner) return null;
   // Tên bữa cơm tách thành "Bữa cơm thân mật" và "Nhà trai" để điện thoại xuống dòng đúng chỗ.
   const [titleMain, titleSide] = dinner.title.split(" - ");

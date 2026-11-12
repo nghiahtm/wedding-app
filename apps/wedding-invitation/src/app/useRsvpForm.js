@@ -39,7 +39,7 @@ export function useRsvpForm(onSent) {
       setIsLetterFlying(true);
       window.setTimeout(() => {
         setIsLetterFlying(false);
-        setMessage("Cảm ơn bạn đã gửi lời chúc. Hẹn gặp bạn trong ngày vui!");
+        setMessage("Cảm ơn quý khách đã gửi lời chúc. Hẹn gặp quý khách trong ngày vui!");
       }, LETTER_FLIGHT_MS);
       onSent?.();
     } catch (error) {

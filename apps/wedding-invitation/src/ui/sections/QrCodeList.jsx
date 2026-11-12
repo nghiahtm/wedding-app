@@ -6,8 +6,8 @@ function QrCodeList({ qrCodes }) {
   if (qrCodes.length === 0) {
     return (
       <p className="gift-empty">
-        Chúng mình đang chuẩn bị mã QR, bạn quay lại sau nhé. Cảm ơn tấm lòng
-        của bạn!
+        Chúng mình đang chuẩn bị mã QR, quý khách quay lại sau nhé. Cảm ơn tấm lòng
+        của quý khách!
       </p>
     );
   }

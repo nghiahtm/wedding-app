@@ -5,6 +5,7 @@ import { useGift } from "./useGift.js";
 import { useInvitationData } from "./useInvitationData.js";
 import { useRsvpForm } from "./useRsvpForm.js";
 import { useScrollReveal } from "./useScrollReveal.js";
+import { useTheme } from "./useTheme.js";
 import { useWishes } from "./useWishes.js";
 
 // Ghép state của từng phần. Bìa (cover) và nội dung (content) nhận props riêng.
@@ -17,9 +18,11 @@ export function useInvitation() {
   const wishes = useWishes(cover.isOpen);
   const rsvp = useRsvpForm(wishes.refresh);
   const gift = useGift();
+  const theme = useTheme();
 
   return {
     isOpen: cover.isOpen,
+    theme,
     cover: {
       weddingDetails,
       onEnter: cover.enterInvitation,

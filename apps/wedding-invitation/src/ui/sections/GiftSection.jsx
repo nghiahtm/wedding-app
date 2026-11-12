@@ -21,7 +21,7 @@ function GiftSection({ weddingDetails, qrPhotos, accounts, gift, revealed }) {
           Gửi chút yêu thương
         </SectionTitle>
         <p className="gift-copy">
-          Sự hiện diện của bạn là món quà quý nhất. Nếu muốn gửi lời chúc từ
+          Sự hiện diện của quý khách là món quà quý nhất. Nếu muốn gửi lời chúc từ
           xa, hãy mở hộp quà nhé.
         </p>
         <button

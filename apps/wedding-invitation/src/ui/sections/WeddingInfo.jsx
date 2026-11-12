@@ -1,9 +1,5 @@
-import { MapPin } from "lucide-react";
 import WatercolorLeaves from "../shared/WatercolorLeaves.jsx";
 import DinnerInfo from "./DinnerInfo.jsx";
-
-// Mỗi cụm trong địa chỉ (cách nhau dấu phẩy) một dòng, để địa chỉ hai bên luôn có số dòng bằng nhau và không bị ngắt giữa cụm.
-const addressLines = (text) => text.split(", ").map((part, index, parts) => (index < parts.length - 1 ? `${part},` : part));
 
 function parentsTitle(family) {
   if (family.father && family.mother) return "Ông Bà";
@@ -25,18 +21,6 @@ function FamilyColumn({ family }) {
           <p className="info-pending">Đang cập nhật</p>
         )}
       </div>
-      {family.address && (
-        <a className="info-address" href={family.mapUrl} target="_blank" rel="noreferrer" aria-label={`Mở bản đồ: ${family.address}`}>
-          <MapPin size={12} strokeWidth={1.8} aria-hidden="true" />
-          <span>
-            {addressLines(family.address).map((line) => (
-              <span className="info-address-line" key={line}>
-                {line}
-              </span>
-            ))}
-          </span>
-        </a>
-      )}
     </article>
   );
 }
@@ -56,7 +40,12 @@ function WeddingInfo({ families, weddingDetails }) {
   return (
     <div className="info-wrap">
       <WatercolorLeaves className="info-leaves" />
-      <img className="info-flower" src="/images/flower2-decoration.webp" alt="" aria-hidden="true" />
+      <img
+        className="info-flower"
+        src="/images/flower2-decoration.webp"
+        alt=""
+        aria-hidden="true"
+      />
       <div className="info-paper">
         <h2 className="info-title">Thiệp cưới</h2>
         <div className="info-families">
@@ -69,7 +58,9 @@ function WeddingInfo({ families, weddingDetails }) {
           tham dự lễ thành hôn của chúng mình
         </p>
         <Person family={groomFamily} />
-        <span className="info-amp" aria-hidden="true">&</span>
+        <span className="info-amp" aria-hidden="true">
+          &
+        </span>
         <Person family={brideFamily} />
         {place && (
           <p className="info-ceremony">

@@ -1,0 +1,10 @@
+/* Màu cam: xoay sắc độ toàn trang từ xanh sage sang cam (ảnh trắng đen không đổi). */
+html{transition:filter .4s ease}
+html[data-theme="orange"]{filter:hue-rotate(-75deg) saturate(1.7)}
+.theme-toggle{position:fixed;z-index:20;right:max(18px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 58px);display:grid;place-items:center;width:46px;height:46px;border:1px solid #d4dccd;border-radius:50%;background:linear-gradient(120deg,#fafcf9 0%,#ebf1e6 100%);color:var(--accent);box-shadow:0 8px 22px #71935326;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.theme-toggle:hover{transform:translateY(-2px);box-shadow:0 12px 26px #71935333}
+.theme-toggle:focus-visible{outline:2px solid #acbc9f;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  html{transition:none}
+  .theme-toggle{transition:none}
+}

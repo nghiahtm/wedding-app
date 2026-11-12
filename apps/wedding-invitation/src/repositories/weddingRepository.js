@@ -33,7 +33,7 @@ const weddingDetails = {
   invitation: {
     eyebrow: "Trân trọng kính mời",
     intro: "Đến dự buổi tiệc chung vui cùng gia đình",
-    closing: "Sự hiện diện của bạn là niềm vinh hạnh cho gia đình chúng tôi.",
+    closing: "Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi.",
   },
   // Thông tin tiệc cưới (mục Thông tin). time: giờ khai tiệc, ví dụ "11:00"; để trống thì ẩn các dòng giờ.
   event: {
@@ -47,7 +47,8 @@ const weddingDetails = {
     lunar: "Tức ngày 21/10 năm Bính Ngọ âm lịch",
     // Bữa cơm thân mật mỗi bên (mục Thông tin lễ cưới); đổi giờ, ngày, nơi ở đây. Bỏ một bên khỏi danh sách thì ẩn bên đó.
     dinners: {
-      bride: { title: "Bữa cơm thân mật - Nhà gái", time: "16 : 00", weekday: "Thứ bảy", date: "28/11/2026", place: "Tại tư gia nhà gái" },
+      groom: { title: "Bữa cơm thân mật - Nhà trai", time: "11 : 00", weekday: "Chủ nhật", date: "29/11/2026", place: "Tại Khách sạn Vị Hoàng", mapUrl: venue.mapUrl },
+      bride: { title: "Bữa cơm thân mật - Nhà gái", time: "15 : 00", weekday: "Thứ bảy", date: "28/11/2026", place: "Tại tư gia nhà gái" },
     },
   },
   dateShort: "29 · 11 · 2026",

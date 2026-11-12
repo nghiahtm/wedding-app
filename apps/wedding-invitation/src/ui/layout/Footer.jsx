@@ -6,7 +6,7 @@ const numberFormat = new Intl.NumberFormat("vi-VN");
 function Footer({ visitSummary }) {
   return (
     <footer>
-      <p>Cảm ơn bạn đã là một phần trong câu chuyện của chúng mình.</p>
+      <p>Cảm ơn quý khách đã là một phần trong câu chuyện của chúng mình.</p>
       {visitSummary && (
         <p className="visit-count">
           <Eye size={15} strokeWidth={1.8} aria-hidden="true" />

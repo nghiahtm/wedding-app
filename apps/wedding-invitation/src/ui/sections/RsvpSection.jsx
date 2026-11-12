@@ -21,9 +21,9 @@ function RsvpSection({ rsvp, revealed }) {
     <RevealSection id="rsvp" className="rsvp" from="left" revealed={revealed}>
       <div className="rsvp-heading">
         <SectionTitle>
-          Bạn sẽ đến chứ?
+          Quý khách sẽ đến chứ?
         </SectionTitle>
-        <p>Cho chúng mình biết để chuẩn bị đón bạn chu đáo, và gửi đôi lời chúc nhé.</p>
+        <p>Xin quý khách cho biết một vài thông tin để gia đình chúng tôi đón tiếp thêm chu đáo</p>
       </div>
       <div className={`rsvp-form-wrap rsvp-card${isLetterFlying ? " is-sending" : ""}`}>
         {isLetterFlying && <LetterFlight />}
@@ -35,7 +35,7 @@ function RsvpSection({ rsvp, revealed }) {
             autoComplete="name"
             value={form.name}
             onChange={updateField}
-            placeholder="Tên của bạn"
+            placeholder="Tên của quý khách"
             required
             error={fieldErrors.name}
           />
@@ -52,7 +52,7 @@ function RsvpSection({ rsvp, revealed }) {
           />
           <label>
             <span>
-              Bạn sẽ tham dự?
+              Quý khách sẽ tham dự?
               <RequiredMark />
             </span>
             <select
